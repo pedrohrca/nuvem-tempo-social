@@ -3,144 +3,167 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<style>:root{color-scheme:light}html,body{margin:0}</style>
 <title>Palavras da Tempo Social</title>
+<meta name="description" content="Nuvem das palavras mais repetidas em dois textos da revista de sociologia da USP, a Tempo Social.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700&family=Rhodium+Libre&display=swap" rel="stylesheet">
 <style>
-/* Layout: cabeçalho curto, nuvem larga em um painel, duas listas lado a lado abaixo. */
+/* Design system: Modern Minimal Culture Book (template em artigos/templates).
+   Papel e tinta quase pretos, quatro pastéis em blocos, títulos em Rhodium Libre,
+   rótulos em Bricolage Grotesque, cartões bem arredondados e linhas tracejadas. */
 :root {
-  --bg: #f6f7f9; --panel: #ffffff; --fg: #1b2230; --muted: #5d6676; --line: #dfe3ea;
-  --a0: #1c6bb0; --a1: #c2521b;
-  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-head: "Space Grotesk", "Inter", system-ui, sans-serif;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #12161c; --panel: #1a1f27; --fg: #e8ebf0; --muted: #9aa3b2; --line: #2b323d;
-    --a0: #6cb2ee; --a1: #f2925c; color-scheme: dark;
-  }
-}
-:root[data-theme="dark"] {
-  --bg: #12161c; --panel: #1a1f27; --fg: #e8ebf0; --muted: #9aa3b2; --line: #2b323d;
-  --a0: #6cb2ee; --a1: #f2925c; color-scheme: dark;
+  color-scheme: light;
+  --paper: #f3f2ee; --ink: #272727;
+  --peach: #ebc1a3; --blue: #bac7e8; --green: #699d7d; --lime: #e8e69d;
+  --display: "Rhodium Libre", Georgia, serif;
+  --sans: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
 }
 * { box-sizing: border-box; }
-body { background: var(--bg); color: var(--fg); font-family: var(--font-body); line-height: 1.55; }
-main {
-  max-width: 1040px; margin-inline: auto; padding-block: 40px 56px;
-  padding-left: max(16px, env(safe-area-inset-left, 0px));
-  padding-right: max(16px, env(safe-area-inset-right, 0px));
-  display: grid; gap: 28px;
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0; background: var(--paper); color: var(--ink);
+  font-family: var(--sans); font-size: 1.0625rem; line-height: 1.55;
 }
-h1 { font-family: var(--font-head); font-size: clamp(1.7rem, 4vw, 2.3rem); line-height: 1.1; margin: 0 0 10px; text-wrap: balance; letter-spacing: -0.01em; }
-.lead { margin: 0; max-width: 62ch; color: var(--muted); }
-.legend { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 18px 0 0; padding: 0; list-style: none; font-size: .9rem; }
-.legend li { display: flex; align-items: center; gap: 9px; min-width: 0; }
-.dot { width: 12px; height: 12px; border-radius: 3px; flex: none; }
-.panel { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; }
-.scroll { overflow-x: auto; padding: 8px; }
-svg { display: block; width: 100%; min-width: 720px; height: auto; font-family: var(--font-body); }
-svg text { cursor: default; }
-svg .a0 { fill: var(--a0); }
-svg .a1 { fill: var(--a1); }
-.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 20px; }
-.col { padding: 20px 22px; min-width: 0; }
-.col h2 { font-family: var(--font-head); font-size: 1.05rem; margin: 0 0 4px; display: flex; align-items: center; gap: 9px; }
-.col p { margin: 0 0 12px; color: var(--muted); font-size: .86rem; }
+.wrap {
+  max-width: 1120px; margin-inline: auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+.top {
+  display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
+  padding-block: 22px; font-weight: 700; font-size: 1rem;
+}
+.hero { padding-block: 28px 12px; }
+h1 {
+  font-family: var(--display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(2.6rem, 9vw, 6.4rem); line-height: .98; letter-spacing: .005em;
+  margin: 0 0 22px; text-wrap: balance;
+}
+.dash { display: block; height: 0; border-top: 4px dashed var(--ink); width: min(300px, 55%); margin-block: 8px 24px; }
+.lead { margin: 0; max-width: 56ch; font-size: clamp(1.15rem, 2.4vw, 1.45rem); line-height: 1.45; }
+.tabs { display: flex; flex-wrap: wrap; gap: 12px; margin: 28px 0 0; padding: 0; list-style: none; }
+.tabs li { border-radius: 999px; padding: 9px 18px; font-weight: 700; font-size: .95rem; }
+.t0 { background: var(--blue); }
+.t1 { background: var(--peach); }
+.frame {
+  margin-block: 28px 0; border: 3px dashed var(--ink); border-radius: 28px;
+  background: var(--paper); overflow-x: auto;
+}
+.frame svg { display: block; width: 100%; min-width: 760px; height: auto; padding: 14px; }
+svg text { fill: var(--ink); font-family: var(--sans); font-weight: 500; cursor: default; }
+svg .w0 rect { fill: var(--blue); }
+svg .w1 rect { fill: var(--peach); }
+.dica { display: none; margin: 10px 4px 0; font-size: .9rem; font-weight: 700; }
+@media (max-width: 800px) { .dica { display: block; } }
+.band { background: var(--green); margin-top: 48px; padding-block: 44px 48px; }
+.band h2 {
+  font-family: var(--display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(1.8rem, 5vw, 3rem); line-height: 1; margin: 0 0 26px;
+}
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); gap: 20px; }
+.card { background: var(--paper); border-radius: 28px; padding: 26px 28px 20px; min-width: 0; }
+.card h3 { margin: 0 0 4px; font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.dot { width: 14px; height: 14px; border-radius: 5px; flex: none; }
+.card p { margin: 0 0 12px; font-size: .95rem; }
 ol { list-style: none; margin: 0; padding: 0; }
-li.row, ol li { display: flex; justify-content: space-between; gap: 16px; padding: 7px 0; border-top: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+ol li {
+  display: flex; justify-content: space-between; gap: 16px; padding: 9px 0;
+  border-top: 3px dashed var(--ink); font-variant-numeric: tabular-nums;
+}
 ol li span { overflow-wrap: anywhere; }
-ol li b { font-weight: 600; }
-.note { margin: 0; font-size: .85rem; color: var(--muted); max-width: 70ch; }
+ol li b { font-weight: 700; }
+.note { padding-block: 34px 56px; }
+.note p { margin: 0; max-width: 72ch; font-size: .98rem; }
+.note mark { background: var(--lime); color: var(--ink); padding: 1px 7px; border-radius: 8px; }
 </style>
 </head>
 <body>
-<main>
-  <header>
+<div class="wrap">
+  <div class="top"><span>Revista Tempo Social</span><span>Nuvem de palavras</span><span>2 textos, 2021 e 2023</span></div>
+  <header class="hero">
     <h1>Palavras da Tempo Social</h1>
+    <span class="dash" aria-hidden="true"></span>
     <p class="lead">As palavras mais repetidas em dois textos da revista de sociologia da USP: um estudo sobre sindicatos no Facebook e uma resenha sobre big data na pesquisa científica.</p>
-    <ul class="legend">
-      <li><span class="dot" style="background:var(--a0)"></span>Comunicação digital e sindicatos, 2021 (8,412 palavras, inglês)</li>
-      <li><span class="dot" style="background:var(--a1)"></span>Resenha de Leonelli sobre big data, 2023 (2,525 palavras, português)</li>
+    <ul class="tabs">
+      <li class="t0">Comunicação digital e sindicatos · 8,412 palavras · inglês</li>
+      <li class="t1">Resenha de Leonelli sobre big data · 2,525 palavras · português</li>
     </ul>
   </header>
-
-  <section class="panel scroll" aria-label="Nuvem de palavras">
-    <svg viewBox="0 40 1000 520" role="img" aria-label="Nuvem das 55 palavras mais frequentes: trade, social e digital no artigo sobre sindicatos; dados, pesquisa e autora na resenha">
-      <text class='a1' x='500.0' y='320.0' font-size='66' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='185' lengthAdjust='spacingAndGlyphs'><title>dados: 19.8 por 1.000 palavras</title>dados</text>
-<text class='a0' x='484.2' y='253.3' font-size='57' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='160' lengthAdjust='spacingAndGlyphs'><title>trade: 14.4 por 1.000 palavras</title>trade</text>
-<text class='a0' x='531.3' y='389.1' font-size='55' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='185' lengthAdjust='spacingAndGlyphs'><title>social: 13.0 por 1.000 palavras</title>social</text>
-<text class='a1' x='659.0' y='307.3' font-size='54' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='121' lengthAdjust='spacingAndGlyphs'><title>data: 12.7 por 1.000 palavras</title>data</text>
-<text class='a0' x='338.4' y='349.2' font-size='45' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='126' lengthAdjust='spacingAndGlyphs'><title>union: 8.2 por 1.000 palavras</title>union</text>
-<text class='a0' x='494.5' y='443.1' font-size='43' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='169' lengthAdjust='spacingAndGlyphs'><title>digital: 7.4 por 1.000 palavras</title>digital</text>
-<text class='a1' x='434.7' y='200.6' font-size='42' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='188' lengthAdjust='spacingAndGlyphs'><title>pesquisa: 7.1 por 1.000 palavras</title>pesquisa</text>
-<text class='a1' x='321.3' y='293.7' font-size='42' font-weight='600' text-anchor='middle' dominant-baseline='central' textLength='141' lengthAdjust='spacingAndGlyphs'><title>autora: 7.1 por 1.000 palavras</title>autora</text>
-<text class='a0' x='638.2' y='247.8' font-size='39' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='131' lengthAdjust='spacingAndGlyphs'><title>unions: 6.1 por 1.000 palavras</title>unions</text>
-<text class='a0' x='335.8' y='393.1' font-size='38' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='128' lengthAdjust='spacingAndGlyphs'><title>labour: 5.6 por 1.000 palavras</title>labour</text>
-<text class='a0' x='441.3' y='157.0' font-size='38' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='170' lengthAdjust='spacingAndGlyphs'><title>facebook: 5.6 por 1.000 palavras</title>facebook</text>
-<text class='a0' x='533.8' y='491.6' font-size='37' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='290' lengthAdjust='spacingAndGlyphs'><title>confederations: 5.5 por 1.000 palavras</title>confederations</text>
-<text class='a0' x='680.7' y='361.1' font-size='34' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='95' lengthAdjust='spacingAndGlyphs'><title>media: 4.6 por 1.000 palavras</title>media</text>
-<text class='a1' x='664.4' y='207.6' font-size='33' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='185' lengthAdjust='spacingAndGlyphs'><title>científica: 4.4 por 1.000 palavras</title>científica</text>
-<text class='a1' x='619.1' y='172.1' font-size='33' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='129' lengthAdjust='spacingAndGlyphs'><title>sociais: 4.4 por 1.000 palavras</title>sociais</text>
-<text class='a1' x='359.0' y='439.9' font-size='32' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='90' lengthAdjust='spacingAndGlyphs'><title>livro: 4.0 por 1.000 palavras</title>livro</text>
-<text class='a0' x='744.0' y='431.8' font-size='30' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='218' lengthAdjust='spacingAndGlyphs'><title>communication: 3.7 por 1.000 palavras</title>communication</text>
-<text class='a1' x='263.8' y='228.6' font-size='30' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='118' lengthAdjust='spacingAndGlyphs'><title>ciência: 3.6 por 1.000 palavras</title>ciência</text>
-<text class='a1' x='614.4' y='137.1' font-size='30' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='134' lengthAdjust='spacingAndGlyphs'><title>produção: 3.6 por 1.000 palavras</title>produção</text>
-<text class='a1' x='462.0' y='113.3' font-size='30' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='151' lengthAdjust='spacingAndGlyphs'><title>discussão: 3.6 por 1.000 palavras</title>discussão</text>
-<text class='a1' x='799.8' y='278.8' font-size='30' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='134' lengthAdjust='spacingAndGlyphs'><title>capítulo: 3.6 por 1.000 palavras</title>capítulo</text>
-<text class='a1' x='805.8' y='331.2' font-size='30' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='134' lengthAdjust='spacingAndGlyphs'><title>ciências: 3.6 por 1.000 palavras</title>ciências</text>
-<text class='a0' x='201.8' y='331.4' font-size='29' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='130' lengthAdjust='spacingAndGlyphs'><title>internet: 3.4 por 1.000 palavras</title>internet</text>
-<text class='a0' x='269.2' y='187.4' font-size='29' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='130' lengthAdjust='spacingAndGlyphs'><title>unionism: 3.4 por 1.000 palavras</title>unionism</text>
-<text class='a0' x='775.9' y='386.5' font-size='29' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='81' lengthAdjust='spacingAndGlyphs'><title>pages: 3.4 por 1.000 palavras</title>pages</text>
-<text class='a0' x='505.5' y='533.6' font-size='29' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='114' lengthAdjust='spacingAndGlyphs'><title>workers: 3.3 por 1.000 palavras</title>workers</text>
-<text class='a0' x='247.2' y='428.2' font-size='28' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='110' lengthAdjust='spacingAndGlyphs'><title>content: 3.2 por 1.000 palavras</title>content</text>
-<text class='a1' x='291.8' y='479.7' font-size='28' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='110' lengthAdjust='spacingAndGlyphs'><title>maneira: 3.2 por 1.000 palavras</title>maneira</text>
-<text class='a0' x='226.8' y='372.6' font-size='27' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='76' lengthAdjust='spacingAndGlyphs'><title>posts: 3.1 por 1.000 palavras</title>posts</text>
-<text class='a0' x='766.1' y='239.4' font-size='27' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='91' lengthAdjust='spacingAndGlyphs'><title>global: 3.0 por 1.000 palavras</title>global</text>
-<text class='a0' x='190.3' y='285.2' font-size='27' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='91' lengthAdjust='spacingAndGlyphs'><title>online: 3.0 por 1.000 palavras</title>online</text>
-<text class='a1' x='289.3' y='144.8' font-size='25' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='112' lengthAdjust='spacingAndGlyphs'><title>problema: 2.8 por 1.000 palavras</title>problema</text>
-<text class='a0' x='600.6' y='101.6' font-size='24' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='108' lengthAdjust='spacingAndGlyphs'><title>analysis: 2.6 por 1.000 palavras</title>analysis</text>
-<text class='a0' x='741.0' y='161.0' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='99' lengthAdjust='spacingAndGlyphs'><title>networks: 2.4 por 1.000 palavras</title>networks</text>
-<text class='a0' x='676.6' y='392.2' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='74' lengthAdjust='spacingAndGlyphs'><title>issues: 2.4 por 1.000 palavras</title>issues</text>
-<text class='a1' x='362.7' y='534.4' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='148' lengthAdjust='spacingAndGlyphs'><title>conhecimento: 2.4 por 1.000 palavras</title>conhecimento</text>
-<text class='a1' x='360.6' y='237.3' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='62' lengthAdjust='spacingAndGlyphs'><title>forma: 2.4 por 1.000 palavras</title>forma</text>
-<text class='a1' x='731.5' y='474.8' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='86' lengthAdjust='spacingAndGlyphs'><title>análise: 2.4 por 1.000 palavras</title>análise</text>
-<text class='a1' x='324.8' y='103.4' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='111' lengthAdjust='spacingAndGlyphs'><title>realidade: 2.4 por 1.000 palavras</title>realidade</text>
-<text class='a1' x='407.8' y='79.9' font-size='22' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='99' lengthAdjust='spacingAndGlyphs'><title>trabalho: 2.4 por 1.000 palavras</title>trabalho</text>
-<text class='a0' x='195.2' y='401.9' font-size='21' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='94' lengthAdjust='spacingAndGlyphs'><title>portugal: 2.3 por 1.000 palavras</title>portugal</text>
-<text class='a0' x='648.3' y='458.8' font-size='21' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='47' lengthAdjust='spacingAndGlyphs'><title>work: 2.3 por 1.000 palavras</title>work</text>
-<text class='a0' x='740.7' y='523.7' font-size='21' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='129' lengthAdjust='spacingAndGlyphs'><title>information: 2.3 por 1.000 palavras</title>information</text>
-<text class='a0' x='586.3' y='78.0' font-size='20' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='101' lengthAdjust='spacingAndGlyphs'><title>challenge: 2.1 por 1.000 palavras</title>challenge</text>
-<text class='a0' x='610.9' y='540.3' font-size='18' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='60' lengthAdjust='spacingAndGlyphs'><title>people: 2.0 por 1.000 palavras</title>people</text>
-<text class='a1' x='289.7' y='504.6' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='76' lengthAdjust='spacingAndGlyphs'><title>maneiras: 2.0 por 1.000 palavras</title>maneiras</text>
-<text class='a1' x='791.0' y='206.9' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='48' lengthAdjust='spacingAndGlyphs'><title>campo: 2.0 por 1.000 palavras</title>campo</text>
-<text class='a1' x='149.6' y='366.0' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='67' lengthAdjust='spacingAndGlyphs'><title>questão: 2.0 por 1.000 palavras</title>questão</text>
-<text class='a1' x='159.4' y='244.3' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='48' lengthAdjust='spacingAndGlyphs'><title>áreas: 2.0 por 1.000 palavras</title>áreas</text>
-<text class='a1' x='744.7' y='135.6' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='76' lengthAdjust='spacingAndGlyphs'><title>primeiro: 2.0 por 1.000 palavras</title>primeiro</text>
-<text class='a1' x='744.6' y='109.2' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='143' lengthAdjust='spacingAndGlyphs'><title>características: 2.0 por 1.000 palavras</title>características</text>
-<text class='a1' x='496.8' y='71.2' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='57' lengthAdjust='spacingAndGlyphs'><title>tópico: 2.0 por 1.000 palavras</title>tópico</text>
-<text class='a1' x='803.8' y='182.9' font-size='17' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='48' lengthAdjust='spacingAndGlyphs'><title>visão: 2.0 por 1.000 palavras</title>visão</text>
-<text class='a0' x='335.8' y='263.9' font-size='14' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='63' lengthAdjust='spacingAndGlyphs'><title>research: 1.9 por 1.000 palavras</title>research</text>
-<text class='a0' x='234.6' y='451.2' font-size='14' font-weight='400' text-anchor='middle' dominant-baseline='central' textLength='102' lengthAdjust='spacingAndGlyphs'><title>organisations: 1.9 por 1.000 palavras</title>organisations</text>
+  <section class="frame" aria-label="Nuvem de palavras">
+    <svg viewBox="72 -0 883 579" role="img" aria-label="Nuvem das 47 palavras mais frequentes: trade, social e digital no artigo sobre sindicatos; dados, pesquisa e autora na resenha.">
+      <g class='w1'><title>dados: 19.8 por 1.000 palavras</title><rect x='404.3' y='262.3' width='191.4' height='75.4' rx='24.1'/><text x='500.0' y='319.7' font-size='58' text-anchor='middle' textLength='157' lengthAdjust='spacingAndGlyphs'>dados</text></g>
+<g class='w0'><title>trade: 14.4 por 1.000 palavras</title><rect x='390.8' y='186.3' width='168.3' height='66.3' rx='21.2'/><text x='475.0' y='236.8' font-size='51' text-anchor='middle' textLength='138' lengthAdjust='spacingAndGlyphs'>trade</text></g>
+<g class='w0'><title>social: 13.0 por 1.000 palavras</title><rect x='395.8' y='345.8' width='188.2' height='63.7' rx='20.4'/><text x='489.9' y='394.3' font-size='49' text-anchor='middle' textLength='159' lengthAdjust='spacingAndGlyphs'>social</text></g>
+<g class='w1'><title>data: 12.7 por 1.000 palavras</title><rect x='606.5' y='251.0' width='132.5' height='62.4' rx='20.0'/><text x='672.7' y='298.5' font-size='48' text-anchor='middle' textLength='104' lengthAdjust='spacingAndGlyphs'>data</text></g>
+<g class='w0'><title>union: 8.2 por 1.000 palavras</title><rect x='251.4' y='274.0' width='132.0' height='52.0' rx='16.6'/><text x='317.4' y='313.6' font-size='40' text-anchor='middle' textLength='108' lengthAdjust='spacingAndGlyphs'>union</text></g>
+<g class='w0'><title>digital: 7.4 por 1.000 palavras</title><rect x='574.0' y='179.3' width='170.8' height='50.7' rx='16.2'/><text x='659.4' y='217.9' font-size='39' text-anchor='middle' textLength='147' lengthAdjust='spacingAndGlyphs'>digital</text></g>
+<g class='w1'><title>pesquisa: 7.1 por 1.000 palavras</title><rect x='613.0' y='324.3' width='187.0' height='49.4' rx='15.8'/><text x='706.4' y='361.9' font-size='38' text-anchor='middle' textLength='164' lengthAdjust='spacingAndGlyphs'>pesquisa</text></g>
+<g class='w1'><title>autora: 7.1 por 1.000 palavras</title><rect x='238.8' y='336.4' width='145.9' height='49.4' rx='15.8'/><text x='311.8' y='374.0' font-size='38' text-anchor='middle' textLength='123' lengthAdjust='spacingAndGlyphs'>autora</text></g>
+<g class='w0'><title>unions: 6.1 por 1.000 palavras</title><rect x='457.2' y='419.1' width='138.2' height='46.8' rx='15.0'/><text x='526.3' y='454.8' font-size='36' text-anchor='middle' textLength='117' lengthAdjust='spacingAndGlyphs'>unions</text></g>
+<g class='w0'><title>labour: 5.6 por 1.000 palavras</title><rect x='236.1' y='206.1' width='130.6' height='44.2' rx='14.1'/><text x='301.4' y='239.8' font-size='34' text-anchor='middle' textLength='110' lengthAdjust='spacingAndGlyphs'>labour</text></g>
+<g class='w0'><title>facebook: 5.6 por 1.000 palavras</title><rect x='375.2' y='132.1' width='167.3' height='44.2' rx='14.1'/><text x='458.8' y='165.8' font-size='34' text-anchor='middle' textLength='147' lengthAdjust='spacingAndGlyphs'>facebook</text></g>
+<g class='w0'><title>confederations: 5.5 por 1.000 palavras</title><rect x='422.2' y='474.0' width='277.4' height='44.2' rx='14.1'/><text x='560.9' y='507.6' font-size='34' text-anchor='middle' textLength='257' lengthAdjust='spacingAndGlyphs'>confederations</text></g>
+<g class='w0'><title>media: 4.6 por 1.000 palavras</title><rect x='627.5' y='391.1' width='105.6' height='41.6' rx='13.3'/><text x='680.3' y='422.7' font-size='32' text-anchor='middle' textLength='86' lengthAdjust='spacingAndGlyphs'>media</text></g>
+<g class='w1'><title>científica: 4.4 por 1.000 palavras</title><rect x='253.0' y='421.4' width='186.0' height='40.3' rx='12.9'/><text x='346.0' y='452.1' font-size='31' text-anchor='middle' textLength='167' lengthAdjust='spacingAndGlyphs'>científica</text></g>
+<g class='w1'><title>sociais: 4.4 por 1.000 palavras</title><rect x='576.0' y='128.5' width='135.8' height='40.3' rx='12.9'/><text x='643.9' y='159.2' font-size='31' text-anchor='middle' textLength='117' lengthAdjust='spacingAndGlyphs'>sociais</text></g>
+<g class='w1'><title>livro: 4.0 por 1.000 palavras</title><rect x='262.8' y='155.1' width='95.7' height='37.7' rx='12.1'/><text x='310.6' y='183.8' font-size='29' text-anchor='middle' textLength='78' lengthAdjust='spacingAndGlyphs'>livro</text></g>
+<g class='w0'><title>communication: 3.7 por 1.000 palavras</title><rect x='312.0' y='84.0' width='213.4' height='36.4' rx='11.6'/><text x='418.7' y='111.8' font-size='28' text-anchor='middle' textLength='197' lengthAdjust='spacingAndGlyphs'>communication</text></g>
+<g class='w1'><title>ciência: 3.6 por 1.000 palavras</title><rect x='759.1' y='267.3' width='122.6' height='36.4' rx='11.6'/><text x='820.4' y='295.0' font-size='28' text-anchor='middle' textLength='106' lengthAdjust='spacingAndGlyphs'>ciência</text></g>
+<g class='w1'><title>produção: 3.6 por 1.000 palavras</title><rect x='103.5' y='263.1' width='137.8' height='36.4' rx='11.6'/><text x='172.4' y='290.8' font-size='28' text-anchor='middle' textLength='121' lengthAdjust='spacingAndGlyphs'>produção</text></g>
+<g class='w1'><title>discussão: 3.6 por 1.000 palavras</title><rect x='550.7' y='72.9' width='152.9' height='36.4' rx='11.6'/><text x='627.2' y='100.7' font-size='28' text-anchor='middle' textLength='136' lengthAdjust='spacingAndGlyphs'>discussão</text></g>
+<g class='w1'><title>capítulo: 3.6 por 1.000 palavras</title><rect x='763.6' y='211.6' width='137.8' height='36.4' rx='11.6'/><text x='832.5' y='239.3' font-size='28' text-anchor='middle' textLength='121' lengthAdjust='spacingAndGlyphs'>capítulo</text></g>
+<g class='w1'><title>ciências: 3.6 por 1.000 palavras</title><rect x='250.6' y='479.4' width='137.8' height='36.4' rx='11.6'/><text x='319.4' y='507.1' font-size='28' text-anchor='middle' textLength='121' lengthAdjust='spacingAndGlyphs'>ciências</text></g>
+<g class='w0'><title>internet: 3.4 por 1.000 palavras</title><rect x='80.5' y='318.8' width='132.8' height='35.1' rx='11.2'/><text x='146.9' y='345.5' font-size='27' text-anchor='middle' textLength='117' lengthAdjust='spacingAndGlyphs'>internet</text></g>
+<g class='w0'><title>unionism: 3.4 por 1.000 palavras</title><rect x='89.2' y='218.1' width='132.8' height='35.1' rx='11.2'/><text x='155.6' y='244.8' font-size='27' text-anchor='middle' textLength='117' lengthAdjust='spacingAndGlyphs'>unionism</text></g>
+<g class='w0'><title>pages: 3.4 por 1.000 palavras</title><rect x='755.7' y='167.3' width='89.1' height='35.1' rx='11.2'/><text x='800.3' y='194.0' font-size='27' text-anchor='middle' textLength='73' lengthAdjust='spacingAndGlyphs'>pages</text></g>
+<g class='w0'><title>workers: 3.3 por 1.000 palavras</title><rect x='109.1' y='367.5' width='118.3' height='35.1' rx='11.2'/><text x='168.2' y='394.2' font-size='27' text-anchor='middle' textLength='102' lengthAdjust='spacingAndGlyphs'>workers</text></g>
+<g class='w0'><title>content: 3.2 por 1.000 palavras</title><rect x='774.4' y='383.8' width='113.9' height='33.8' rx='10.8'/><text x='831.3' y='409.6' font-size='26' text-anchor='middle' textLength='98' lengthAdjust='spacingAndGlyphs'>content</text></g>
+<g class='w1'><title>maneira: 3.2 por 1.000 palavras</title><rect x='134.2' y='147.1' width='113.9' height='33.8' rx='10.8'/><text x='191.1' y='172.9' font-size='26' text-anchor='middle' textLength='98' lengthAdjust='spacingAndGlyphs'>maneira</text></g>
+<g class='w0'><title>posts: 3.1 por 1.000 palavras</title><rect x='814.0' y='334.7' width='85.8' height='33.8' rx='10.8'/><text x='856.9' y='360.4' font-size='26' text-anchor='middle' textLength='70' lengthAdjust='spacingAndGlyphs'>posts</text></g>
+<g class='w0'><title>global: 3.0 por 1.000 palavras</title><rect x='741.6' y='428.9' width='96.0' height='32.5' rx='10.4'/><text x='789.6' y='453.6' font-size='25' text-anchor='middle' textLength='81' lengthAdjust='spacingAndGlyphs'>global</text></g>
+<g class='w0'><title>online: 3.0 por 1.000 palavras</title><rect x='417.5' y='42.2' width='96.0' height='32.5' rx='10.4'/><text x='465.5' y='67.0' font-size='25' text-anchor='middle' textLength='81' lengthAdjust='spacingAndGlyphs'>online</text></g>
+<g class='w1'><title>problema: 2.8 por 1.000 palavras</title><rect x='499.6' y='528.7' width='118.1' height='31.2' rx='10.0'/><text x='558.6' y='552.4' font-size='24' text-anchor='middle' textLength='104' lengthAdjust='spacingAndGlyphs'>problema</text></g>
+<g class='w0'><title>analysis: 2.6 por 1.000 palavras</title><rect x='187.6' y='108.6' width='113.2' height='29.9' rx='9.6'/><text x='244.2' y='131.4' font-size='23' text-anchor='middle' textLength='99' lengthAdjust='spacingAndGlyphs'>analysis</text></g>
+<g class='w0'><title>networks: 2.4 por 1.000 palavras</title><rect x='135.4' y='431.8' width='103.3' height='27.3' rx='8.7'/><text x='187.1' y='452.6' font-size='21' text-anchor='middle' textLength='91' lengthAdjust='spacingAndGlyphs'>networks</text></g>
+<g class='w0'><title>issues: 2.4 por 1.000 palavras</title><rect x='727.7' y='114.4' width='80.6' height='27.3' rx='8.7'/><text x='768.0' y='135.1' font-size='21' text-anchor='middle' textLength='68' lengthAdjust='spacingAndGlyphs'>issues</text></g>
+<g class='w1'><title>conhecimento: 2.4 por 1.000 palavras</title><rect x='319.4' y='544.0' width='148.7' height='27.3' rx='8.7'/><text x='393.7' y='564.8' font-size='21' text-anchor='middle' textLength='136' lengthAdjust='spacingAndGlyphs'>conhecimento</text></g>
+<g class='w1'><title>forma: 2.4 por 1.000 palavras</title><rect x='725.8' y='479.2' width='69.3' height='27.3' rx='8.7'/><text x='760.4' y='500.0' font-size='21' text-anchor='middle' textLength='57' lengthAdjust='spacingAndGlyphs'>forma</text></g>
+<g class='w1'><title>análise: 2.4 por 1.000 palavras</title><rect x='267.4' y='44.4' width='92.0' height='27.3' rx='8.7'/><text x='313.4' y='65.2' font-size='21' text-anchor='middle' textLength='79' lengthAdjust='spacingAndGlyphs'>análise</text></g>
+<g class='w1'><title>realidade: 2.4 por 1.000 palavras</title><rect x='525.6' y='20.4' width='114.7' height='27.3' rx='8.7'/><text x='582.9' y='41.2' font-size='21' text-anchor='middle' textLength='102' lengthAdjust='spacingAndGlyphs'>realidade</text></g>
+<g class='w1'><title>trabalho: 2.4 por 1.000 palavras</title><rect x='741.0' y='77.6' width='103.3' height='27.3' rx='8.7'/><text x='792.7' y='98.4' font-size='21' text-anchor='middle' textLength='91' lengthAdjust='spacingAndGlyphs'>trabalho</text></g>
+<g class='w0'><title>portugal: 2.3 por 1.000 palavras</title><rect x='143.9' y='480.5' width='98.4' height='26.0' rx='8.3'/><text x='193.1' y='500.3' font-size='20' text-anchor='middle' textLength='86' lengthAdjust='spacingAndGlyphs'>portugal</text></g>
+<g class='w0'><title>work: 2.3 por 1.000 palavras</title><rect x='632.7' y='531.7' width='55.2' height='26.0' rx='8.3'/><text x='660.3' y='551.5' font-size='20' text-anchor='middle' textLength='43' lengthAdjust='spacingAndGlyphs'>work</text></g>
+<g class='w0'><title>information: 2.3 por 1.000 palavras</title><rect x='315.8' y='7.9' width='130.8' height='26.0' rx='8.3'/><text x='381.2' y='27.7' font-size='20' text-anchor='middle' textLength='119' lengthAdjust='spacingAndGlyphs'>information</text></g>
+<g class='w1'><title>maneiras: 2.0 por 1.000 palavras</title><rect x='199.5' y='80.6' width='73.8' height='19.5' rx='6.2'/><text x='236.4' y='95.5' font-size='15' text-anchor='middle' textLength='65' lengthAdjust='spacingAndGlyphs'>maneiras</text></g>
+<g class='w1'><title>campo: 2.0 por 1.000 palavras</title><rect x='898.2' y='275.9' width='49.5' height='19.5' rx='6.2'/><text x='922.9' y='290.8' font-size='15' text-anchor='middle' textLength='41' lengthAdjust='spacingAndGlyphs'>campo</text></g>
+<g class='w1'><title>questão: 2.0 por 1.000 palavras</title><rect x='823.8' y='127.5' width='65.7' height='19.5' rx='6.2'/><text x='856.6' y='142.4' font-size='15' text-anchor='middle' textLength='57' lengthAdjust='spacingAndGlyphs'>questão</text></g>
+<g class='w1'><title>áreas: 2.0 por 1.000 palavras</title><rect x='878.8' y='181.5' width='49.5' height='19.5' rx='6.2'/><text x='903.6' y='196.4' font-size='15' text-anchor='middle' textLength='41' lengthAdjust='spacingAndGlyphs'>áreas</text></g>
     </svg>
   </section>
+  <p class="dica">Deslize a nuvem para o lado para ver todas as palavras.</p>
+</div>
 
-  <section class="cols">
-    <div class="panel col">
-      <h2><span class="dot" style="background:var(--a0)"></span>Sindicatos e comunicação digital</h2>
-      <p>Frequência por 1.000 palavras</p>
-      <ol><li><span>trade</span><b>14.4</b></li><li><span>social</span><b>9.0</b></li><li><span>union</span><b>8.2</b></li><li><span>digital</span><b>7.4</b></li><li><span>unions</span><b>6.1</b></li><li><span>labour</span><b>5.6</b></li><li><span>facebook</span><b>5.6</b></li><li><span>confederations</span><b>5.5</b></li></ol>
+<section class="band">
+  <div class="wrap">
+    <h2>Mais repetidas, texto a texto</h2>
+    <div class="cards">
+      <div class="card">
+        <h3><span class="dot" style="background:var(--blue)"></span>Sindicatos e comunicação digital</h3>
+        <p>Frequência por 1.000 palavras</p>
+        <ol><li><span>trade</span><b>14.4</b></li><li><span>social</span><b>9.0</b></li><li><span>union</span><b>8.2</b></li><li><span>digital</span><b>7.4</b></li><li><span>unions</span><b>6.1</b></li><li><span>labour</span><b>5.6</b></li><li><span>facebook</span><b>5.6</b></li><li><span>confederations</span><b>5.5</b></li></ol>
+      </div>
+      <div class="card">
+        <h3><span class="dot" style="background:var(--peach)"></span>Resenha sobre big data</h3>
+        <p>Frequência por 1.000 palavras</p>
+        <ol><li><span>dados</span><b>19.8</b></li><li><span>data</span><b>12.7</b></li><li><span>pesquisa</span><b>7.1</b></li><li><span>autora</span><b>7.1</b></li><li><span>científica</span><b>4.4</b></li><li><span>sociais</span><b>4.4</b></li><li><span>livro</span><b>4.0</b></li><li><span>social</span><b>4.0</b></li></ol>
+      </div>
     </div>
-    <div class="panel col">
-      <h2><span class="dot" style="background:var(--a1)"></span>Resenha sobre big data</h2>
-      <p>Frequência por 1.000 palavras</p>
-      <ol><li><span>dados</span><b>19.8</b></li><li><span>data</span><b>12.7</b></li><li><span>pesquisa</span><b>7.1</b></li><li><span>autora</span><b>7.1</b></li><li><span>científica</span><b>4.4</b></li><li><span>sociais</span><b>4.4</b></li><li><span>livro</span><b>4.0</b></li><li><span>social</span><b>4.0</b></li></ol>
-    </div>
-  </section>
+  </div>
+</section>
 
-  <p class="note">O tamanho da palavra segue a raiz quadrada da sua frequência. Cada texto pesa igual, porque a frequência é medida a cada 1.000 palavras e o artigo mais longo não domina o mais curto. Palavras nos dois textos ficam na cor de quem mais as usa. Formas como "union" e "unions" contam separadas, e nomes de autores e do periódico foram retirados.</p>
-</main>
+<div class="wrap note">
+  <p><mark>Como ler:</mark> o tamanho da palavra segue a raiz quadrada da sua frequência. Cada texto pesa igual, porque a frequência é medida a cada 1.000 palavras e o artigo mais longo não domina o mais curto. Palavras presentes nos dois textos ficam na cor de quem mais as usa. Formas como "union" e "unions" contam separadas, e nomes de autores e do periódico foram retirados.</p>
+</div>
 </body>
 </html>
