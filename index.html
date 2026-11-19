@@ -56,6 +56,18 @@ svg .w0 rect { fill: var(--blue); }
 svg .w1 rect { fill: var(--peach); }
 .dica { display: none; margin: 10px 4px 0; font-size: .9rem; font-weight: 700; }
 @media (max-width: 800px) { .dica { display: block; } }
+#cena { display: none; position: relative; height: clamp(360px, 62vw, 620px); cursor: grab; }
+#cena:active { cursor: grabbing; }
+#cena canvas { display: block; width: 100%; height: 100%; }
+.frame.is-3d { overflow: hidden; }
+.frame.is-3d #cena { display: block; }
+.frame.is-3d svg { display: none; }
+.frame.is-3d + .dica { display: block; }
+.tip {
+  position: absolute; pointer-events: none; transform: translate(-50%, calc(-100% - 14px));
+  background: var(--ink); color: var(--paper); font-weight: 700; font-size: .9rem;
+  padding: 6px 14px; border-radius: 999px; white-space: nowrap;
+}
 .band { background: var(--green); margin-top: 48px; padding-block: 44px 48px; }
 .band h2 {
   font-family: var(--display); font-weight: 400; text-transform: uppercase;
@@ -86,11 +98,12 @@ ol li b { font-weight: 700; }
     <span class="dash" aria-hidden="true"></span>
     <p class="lead">As palavras mais repetidas em dois textos da revista de sociologia da USP: um estudo sobre sindicatos no Facebook e uma resenha sobre big data na pesquisa científica.</p>
     <ul class="tabs">
-      <li class="t0">Comunicação digital e sindicatos · 8,412 palavras · inglês</li>
-      <li class="t1">Resenha de Leonelli sobre big data · 2,525 palavras · português</li>
+      <li class="t0">Comunicação digital e sindicatos · 8.412 palavras · inglês</li>
+      <li class="t1">Resenha de Leonelli sobre big data · 2.525 palavras · português</li>
     </ul>
   </header>
   <section class="frame" aria-label="Nuvem de palavras">
+    <div id="cena" role="img" aria-label="Nuvem de palavras em 3D, girando. As mesmas palavras estão nas listas abaixo."><div class="tip" id="tip" hidden></div></div>
     <svg viewBox="72 -0 883 579" role="img" aria-label="Nuvem das 47 palavras mais frequentes: trade, social e digital no artigo sobre sindicatos; dados, pesquisa e autora na resenha.">
       <g class='w1'><title>dados: 19.8 por 1.000 palavras</title><rect x='404.3' y='262.3' width='191.4' height='75.4' rx='24.1'/><text x='500.0' y='319.7' font-size='58' text-anchor='middle' textLength='157' lengthAdjust='spacingAndGlyphs'>dados</text></g>
 <g class='w0'><title>trade: 14.4 por 1.000 palavras</title><rect x='390.8' y='186.3' width='168.3' height='66.3' rx='21.2'/><text x='475.0' y='236.8' font-size='51' text-anchor='middle' textLength='138' lengthAdjust='spacingAndGlyphs'>trade</text></g>
@@ -141,7 +154,7 @@ ol li b { font-weight: 700; }
 <g class='w1'><title>áreas: 2.0 por 1.000 palavras</title><rect x='878.8' y='181.5' width='49.5' height='19.5' rx='6.2'/><text x='903.6' y='196.4' font-size='15' text-anchor='middle' textLength='41' lengthAdjust='spacingAndGlyphs'>áreas</text></g>
     </svg>
   </section>
-  <p class="dica">Deslize a nuvem para o lado para ver todas as palavras.</p>
+  <p class="dica" id="dica">Deslize a nuvem para o lado para ver todas as palavras.</p>
 </div>
 
 <section class="band">
@@ -151,12 +164,12 @@ ol li b { font-weight: 700; }
       <div class="card">
         <h3><span class="dot" style="background:var(--blue)"></span>Sindicatos e comunicação digital</h3>
         <p>Frequência por 1.000 palavras</p>
-        <ol><li><span>trade</span><b>14.4</b></li><li><span>social</span><b>9.0</b></li><li><span>union</span><b>8.2</b></li><li><span>digital</span><b>7.4</b></li><li><span>unions</span><b>6.1</b></li><li><span>labour</span><b>5.6</b></li><li><span>facebook</span><b>5.6</b></li><li><span>confederations</span><b>5.5</b></li></ol>
+        <ol><li><span>trade</span><b>14,4</b></li><li><span>social</span><b>9,0</b></li><li><span>union</span><b>8,2</b></li><li><span>digital</span><b>7,4</b></li><li><span>unions</span><b>6,1</b></li><li><span>labour</span><b>5,6</b></li><li><span>facebook</span><b>5,6</b></li><li><span>confederations</span><b>5,5</b></li></ol>
       </div>
       <div class="card">
         <h3><span class="dot" style="background:var(--peach)"></span>Resenha sobre big data</h3>
         <p>Frequência por 1.000 palavras</p>
-        <ol><li><span>dados</span><b>19.8</b></li><li><span>data</span><b>12.7</b></li><li><span>pesquisa</span><b>7.1</b></li><li><span>autora</span><b>7.1</b></li><li><span>científica</span><b>4.4</b></li><li><span>sociais</span><b>4.4</b></li><li><span>livro</span><b>4.0</b></li><li><span>social</span><b>4.0</b></li></ol>
+        <ol><li><span>dados</span><b>19,8</b></li><li><span>data</span><b>12,7</b></li><li><span>pesquisa</span><b>7,1</b></li><li><span>autora</span><b>7,1</b></li><li><span>científica</span><b>4,4</b></li><li><span>sociais</span><b>4,4</b></li><li><span>livro</span><b>4,0</b></li><li><span>social</span><b>4,0</b></li></ol>
       </div>
     </div>
   </div>
@@ -165,5 +178,181 @@ ol li b { font-weight: 700; }
 <div class="wrap note">
   <p><mark>Como ler:</mark> o tamanho da palavra segue a raiz quadrada da sua frequência. Cada texto pesa igual, porque a frequência é medida a cada 1.000 palavras e o artigo mais longo não domina o mais curto. Palavras presentes nos dois textos ficam na cor de quem mais as usa. Formas como "union" e "unions" contam separadas, e nomes de autores e do periódico foram retirados.</p>
 </div>
+
+<script type="importmap">
+{"imports": {"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+             "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+// Nuvem 3D: cada palavra é um sprite (sempre de frente para a câmera) numa esfera.
+// Se o WebGL ou o three.js falharem, a nuvem SVG da página continua visível.
+const DADOS = [{"t": "dados", "s": 58, "o": 1, "f": "19,8"}, {"t": "trade", "s": 51, "o": 0, "f": "14,4"}, {"t": "social", "s": 49, "o": 0, "f": "13,0"}, {"t": "data", "s": 48, "o": 1, "f": "12,7"}, {"t": "union", "s": 40, "o": 0, "f": "8,2"}, {"t": "digital", "s": 39, "o": 0, "f": "7,4"}, {"t": "pesquisa", "s": 38, "o": 1, "f": "7,1"}, {"t": "autora", "s": 38, "o": 1, "f": "7,1"}, {"t": "unions", "s": 36, "o": 0, "f": "6,1"}, {"t": "labour", "s": 34, "o": 0, "f": "5,6"}, {"t": "facebook", "s": 34, "o": 0, "f": "5,6"}, {"t": "confederations", "s": 34, "o": 0, "f": "5,5"}, {"t": "media", "s": 32, "o": 0, "f": "4,6"}, {"t": "científica", "s": 31, "o": 1, "f": "4,4"}, {"t": "sociais", "s": 31, "o": 1, "f": "4,4"}, {"t": "livro", "s": 29, "o": 1, "f": "4,0"}, {"t": "communication", "s": 28, "o": 0, "f": "3,7"}, {"t": "ciência", "s": 28, "o": 1, "f": "3,6"}, {"t": "produção", "s": 28, "o": 1, "f": "3,6"}, {"t": "discussão", "s": 28, "o": 1, "f": "3,6"}, {"t": "capítulo", "s": 28, "o": 1, "f": "3,6"}, {"t": "ciências", "s": 28, "o": 1, "f": "3,6"}, {"t": "internet", "s": 27, "o": 0, "f": "3,4"}, {"t": "unionism", "s": 27, "o": 0, "f": "3,4"}, {"t": "pages", "s": 27, "o": 0, "f": "3,4"}, {"t": "workers", "s": 27, "o": 0, "f": "3,3"}, {"t": "content", "s": 26, "o": 0, "f": "3,2"}, {"t": "maneira", "s": 26, "o": 1, "f": "3,2"}, {"t": "posts", "s": 26, "o": 0, "f": "3,1"}, {"t": "global", "s": 25, "o": 0, "f": "3,0"}, {"t": "online", "s": 25, "o": 0, "f": "3,0"}, {"t": "problema", "s": 24, "o": 1, "f": "2,8"}, {"t": "analysis", "s": 23, "o": 0, "f": "2,6"}, {"t": "networks", "s": 21, "o": 0, "f": "2,4"}, {"t": "issues", "s": 21, "o": 0, "f": "2,4"}, {"t": "conhecimento", "s": 21, "o": 1, "f": "2,4"}, {"t": "forma", "s": 21, "o": 1, "f": "2,4"}, {"t": "análise", "s": 21, "o": 1, "f": "2,4"}, {"t": "realidade", "s": 21, "o": 1, "f": "2,4"}, {"t": "trabalho", "s": 21, "o": 1, "f": "2,4"}, {"t": "portugal", "s": 20, "o": 0, "f": "2,3"}, {"t": "work", "s": 20, "o": 0, "f": "2,3"}, {"t": "information", "s": 20, "o": 0, "f": "2,3"}, {"t": "maneiras", "s": 15, "o": 1, "f": "2,0"}, {"t": "campo", "s": 15, "o": 1, "f": "2,0"}, {"t": "questão", "s": 15, "o": 1, "f": "2,0"}, {"t": "áreas", "s": 15, "o": 1, "f": "2,0"}];
+const cena = document.getElementById('cena');
+const frame = cena.closest('.frame');
+const tip = document.getElementById('tip');
+const dica = document.getElementById('dica');
+
+const temWebGL = (() => {
+  try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); }
+  catch (e) { return false; }
+})();
+if (temWebGL) {
+  iniciar().catch(err => {
+    console.warn('Nuvem 3D indisponível; mantendo a versão plana.', err);
+    frame.classList.remove('is-3d');
+  });
+}
+
+function pilula(d, cor, tinta) {
+  const px = d.s * 2.4;
+  const fonte = `500 ${px}px "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif`;
+  const c = document.createElement('canvas');
+  const g = c.getContext('2d');
+  g.font = fonte;
+  const h = Math.ceil(px * 1.36);
+  c.width = Math.ceil(g.measureText(d.t).width + px * 0.64);
+  c.height = h;
+  const w = c.width, r = h * 0.32;
+  g.fillStyle = cor;
+  g.beginPath();
+  g.moveTo(r, 0); g.lineTo(w - r, 0); g.quadraticCurveTo(w, 0, w, r);
+  g.lineTo(w, h - r); g.quadraticCurveTo(w, h, w - r, h);
+  g.lineTo(r, h); g.quadraticCurveTo(0, h, 0, h - r);
+  g.lineTo(0, r); g.quadraticCurveTo(0, 0, r, 0);
+  g.fill();
+  g.font = fonte;
+  g.fillStyle = tinta;
+  g.textAlign = 'center';
+  g.textBaseline = 'middle';
+  g.fillText(d.t, w / 2, h / 2 + px * 0.05);
+  return c;
+}
+
+async function iniciar() {
+  try { await document.fonts.load('500 64px "Bricolage Grotesque"'); } catch (e) { /* usa a fonte reserva */ }
+  const css = getComputedStyle(document.documentElement);
+  const cores = [css.getPropertyValue('--blue').trim(), css.getPropertyValue('--peach').trim()];
+  const tinta = css.getPropertyValue('--ink').trim();
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+  renderer.outputColorSpace = THREE.SRGBColorSpace;
+  renderer.domElement.setAttribute('aria-hidden', 'true');
+  cena.prepend(renderer.domElement);
+  frame.classList.add('is-3d');
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(42, 1, 0.1, 100);
+  // RX, RY e R = largura, altura e profundidade do elipsoide; RX e R mudam com a proporção da tela
+  const DIST = 10, RY = 2.9;
+  let RX = 4.9, R = 4.2;
+  camera.position.set(0, 0, DIST);
+
+  // distribuição de Fibonacci na esfera; o passo coprimo espalha as palavras grandes
+  // Pontos de Fibonacci num elipsoide mais largo que alto (a moldura é larga).
+  // As palavras vêm da maior para a menor: as maiores ocupam os pontos perto do
+  // "equador", onde se leem melhor; as menores vão para perto dos polos.
+  const N = DADOS.length, ouro = Math.PI * (3 - Math.sqrt(5));
+  const pts = Array.from({ length: N }, (_, k) => {
+    const y = 1 - 2 * (k + 0.5) / N, raio = Math.sqrt(1 - y * y), th = ouro * k;
+    return { x: Math.cos(th) * raio, y, z: Math.sin(th) * raio };
+  }).sort((a, b) => Math.abs(a.y) - Math.abs(b.y));
+  // gira tudo para que a palavra mais frequente comece de frente para a câmera
+  const giro = -Math.atan2(pts[0].x, pts[0].z);
+  const cg = Math.cos(giro), sg = Math.sin(giro);
+  const maxAniso = renderer.capabilities.getMaxAnisotropy();
+  const sprites = DADOS.map((d, i) => {
+    const c = pilula(d, cores[d.o], tinta);
+    const tex = new THREE.CanvasTexture(c);
+    tex.colorSpace = THREE.SRGBColorSpace;
+    tex.anisotropy = maxAniso;
+    const sp = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+    const alt = d.s * 0.0138;
+    sp.scale.set(alt * c.width / c.height, alt, 1);
+    const p = pts[i];
+    const x = p.x * cg + p.z * sg, z = -p.x * sg + p.z * cg;
+    sp.userData = { ...d, u: { x, y: p.y, z } };   // posição na esfera unitária
+    scene.add(sp);
+    return sp;
+  });
+
+  const controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableZoom = false;       // não sequestra a rolagem da página
+  controls.enablePan = false;
+  controls.enableDamping = true;
+  controls.rotateSpeed = 0.55;
+  controls.minPolarAngle = Math.PI * 0.28;
+  controls.maxPolarAngle = Math.PI * 0.72;
+  controls.autoRotate = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+  controls.autoRotateSpeed = 0.8;
+  renderer.domElement.style.touchAction = 'pan-y';   // no celular, arrastar na vertical rola a página
+
+  function ajustar() {
+    const w = cena.clientWidth, h = cena.clientHeight;
+    if (!w || !h) return;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    // tela larga: elipsoide largo; tela estreita: quase redondo, para as palavras não encolherem demais
+    const larga = camera.aspect >= 1.3;
+    RX = larga ? 4.9 : 3.0;
+    R = larga ? 4.2 : 3.0;
+    for (const sp of sprites) {
+      const u = sp.userData.u;
+      sp.position.set(u.x * RX, u.y * RY, u.z * R);
+    }
+    // afasta a câmera o bastante para a maior largura (RX ou, girada, R) mais meia palavra caber
+    const meiaLarg = Math.max(RX, R) + (larga ? 1.7 : 1.3), tg = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
+    camera.position.setLength(Math.max(DIST, meiaLarg / (tg * camera.aspect)));
+    camera.updateProjectionMatrix();
+  }
+  new ResizeObserver(ajustar).observe(cena);
+  ajustar();
+
+  const ray = new THREE.Raycaster(), ptr = new THREE.Vector2();
+  let mouse = null;
+  const mover = e => {
+    const b = renderer.domElement.getBoundingClientRect();
+    mouse = { x: e.clientX - b.left, y: e.clientY - b.top };
+    ptr.set(mouse.x / b.width * 2 - 1, -(mouse.y / b.height) * 2 + 1);
+  };
+  renderer.domElement.addEventListener('pointermove', mover);
+  renderer.domElement.addEventListener('pointerdown', mover);
+  renderer.domElement.addEventListener('pointerleave', () => { mouse = null; tip.hidden = true; });
+
+  dica.textContent = 'Arraste para girar a nuvem. Passe o mouse ou toque numa palavra para ver a frequência.';
+
+  const v = new THREE.Vector3();
+  renderer.setAnimationLoop(() => {
+    controls.update();
+    camera.updateMatrixWorld();
+    const d0 = camera.position.length();
+    for (const sp of sprites) {
+      v.copy(sp.position).applyMatrix4(camera.matrixWorldInverse);
+      const prof = -v.z;
+      const t = Math.min(1, Math.max(0, (prof - (d0 - R)) / (2 * R)));
+      sp.material.opacity = 1 - 0.85 * t * t;      // a metade de trás fica esmaecida
+      sp.renderOrder = Math.round(10000 - prof * 100);
+    }
+    if (mouse) {
+      ray.setFromCamera(ptr, camera);
+      const alvo = ray.intersectObjects(sprites).find(h => h.object.material.opacity > 0.55);
+      if (alvo) {
+        const d = alvo.object.userData;
+        tip.textContent = `${d.t}: ${d.f} por 1.000 palavras`;
+        tip.style.left = mouse.x + 'px';
+        tip.style.top = mouse.y + 'px';
+        tip.hidden = false;
+      } else {
+        tip.hidden = true;
+      }
+    }
+    renderer.render(scene, camera);
+  });
+}
+</script>
+
 </body>
 </html>
